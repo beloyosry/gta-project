@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backGroundHome {
+  background-image: url("assets/images/Wallpaper.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+/* 
+.backGroundClock {
+  background-image: url("./assets/images/Widget Container.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+} */
