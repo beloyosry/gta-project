@@ -27,6 +27,16 @@ function App() {
             </>
           }
         />
+         <Route 
+          path="/appstore"
+          element={
+            <>
+              <Header/>
+              <AppStore/>
+              <HomeBar/>
+            </>
+          }
+        />
       </Routes>
     </div>
   );
