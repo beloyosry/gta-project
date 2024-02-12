@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const footerApps = [
   {
     icon: phone,
-    path: "/phone",
+    path: "/contacts",
   },
   {
     icon: web,

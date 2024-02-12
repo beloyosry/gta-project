@@ -3,6 +3,8 @@ import Header from "./components/ui/Header/Header.jsx";
 import HomePhone from "./pages/Home system/Home phone/HomePhone";
 import Calculator from "./pages/calculator/Calculator.jsx";
 import HomeBar from "./components/ui/HomeBar/HomeBar.jsx";
+import Contacts from "./pages/contacts/Contacts.jsx";
+import NewCalculator from "./pages/calculator/newCalculator.jsx";
 
 function App() {
   return (
@@ -22,7 +24,17 @@ function App() {
           element={
             <>
               <Header />
-              <Calculator />
+              <NewCalculator />
+              <HomeBar />
+            </>
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <>
+              <Header />
+              <Contacts />
               <HomeBar />
             </>
           }
