@@ -6,6 +6,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  background-color: black;
+
 }
 
 #root {
@@ -21,6 +23,7 @@ body {
   background-position: center;
   background-size: cover;
 }
+
 /* 
 .backGroundClock {
   background-image: url("./assets/images/Widget Container.png");
