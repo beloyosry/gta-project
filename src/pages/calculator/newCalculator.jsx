@@ -6,15 +6,23 @@ const NewCalculator = () => {
   const [num2, setNum2] = useState("");
   const [opr, setOpr] = useState("");
   const [oprClicked, setOprClicked] = useState(false);
-  const [result, setResult] = useState("");
+  // const [result, setResult] = useState("");
+
+  // eslint-disable-next-line no-unused-vars
+  const [end, setEnd] = useState(false);
 
   const handleNumbers = (value) => {
     if (!oprClicked && opr === "") {
       // false
       // set num1
-      setNum1((prevInput) =>
-        prevInput === "0" || prevInput === "" ? value : prevInput + value
-      );
+      setNum1((prevInput) => {
+        if (end) {
+          prevInput = "";
+        }
+        return prevInput === "0" || prevInput === ""
+          ? value
+          : prevInput + value;
+      });
     } else {
       // true
       // set num2
@@ -24,105 +32,151 @@ const NewCalculator = () => {
     }
   };
 
-  const handleOperator = (value) => {
-    setOprClicked(true);
-    setOpr(value);
-
-    if (opr !== "") {
-      switch (opr) {
-        case "/":
-          setResult(Number(num1) / Number(num2));
-          break;
-        case "*":
-          setResult(Number(num1) * Number(num2));
-          break;
-        case "+":
-          setResult(Number(num1) + Number(num2));
-          break;
-        case "-":
-          setResult(Number(num1) - Number(num2));
-          break;
-        case "%":
-          setResult(Number(num1) % Number(num2));
-          break;
-
-        default:
-          setResult("0");
-          break;
-      }
-    }
-
-    if (opr !== "" && num1 === "") {
-      switch (opr) {
-        case "/":
-          setResult(Number(result) / Number(num2));
-          break;
-        case "*":
-          setResult(Number(result) * Number(num2));
-          break;
-        case "+":
-          setResult(Number(result) + Number(num2));
-          break;
-        case "-":
-          setResult(Number(result) - Number(num2));
-          break;
-        case "%":
-          setResult(Number(result) % Number(num2));
-          break;
-
-        default:
-          setResult("0");
-          break;
-      }
-    }
-  };
-
   const handleClear = () => {
     setNum1("");
     setNum2("");
     setOpr("");
     setOprClicked(false);
-    setResult("");
+    // setResult("");
   };
 
-  const handleEqualBtn = () => {
-    // try {
-    //   setInput(eval(input).toString());
-    // } catch (error) {
-    //   setInput("Error");
-    // }
-    setOprClicked(false);
+  const handlePercentageOperator = () => {
+    setNum1((prevNum1) => {
+      console.log(Number(prevNum1), Number(num2));
+      return (Number(prevNum1) / 100).toString();
+    });
+  };
 
-    switch (opr) {
-      case "/":
-        setResult(Number(num1) / Number(num2));
-        break;
-      case "*":
-        setResult(Number(num1) * Number(num2));
-        break;
-      case "+":
-        setResult(Number(num1) + Number(num2));
-        break;
-      case "-":
-        setResult(Number(num1) - Number(num2));
-        break;
-      case "%":
-        setResult(Number(num1) % Number(num2));
-        break;
+  const handleMinusOperator = () => {
+    setNum1((prevNum1) => {
+      console.log(Number(prevNum1), Number(num2));
+      return (Number(prevNum1) * -1).toString();
+    });
+  };
 
-      default:
-        setResult("0");
-        break;
+  const handleDotOperator = () => {
+    if (!oprClicked && opr === "") {
+      setNum1((prevNum1) => {
+        console.log(Number(prevNum1), Number(num2));
+        return prevNum1.split(".").length === 1
+          ? Number(prevNum1).toString() + "."
+          : Number(prevNum1).toString();
+      });
+    } else {
+      setNum2((prevNum2) => {
+        console.log(Number(prevNum2), Number(num2));
+        return prevNum2.split(".").length === 1
+          ? Number(prevNum2).toString() + "."
+          : Number(prevNum2).toString();
+      });
     }
   };
 
+  const handleOperator = (value) => {
+    setOprClicked(true);
+    setOpr(value);
+
+    // setNum2("");
+    // console.log("num1: " + num1, "num2: " + num2, "result: " + result);
+    console.log("newOperator:" + value, oprClicked, "oldOperator:" + opr); // "" , false
+    // if (opr !== "" && num1 !== "") {
+    //first one
+
+    // if (value === "=") {
+    //   setNum1((prevNum1) => {
+    //     setNum2("");
+    //     setOpr("");
+    //     setOprClicked(false);
+    //     return eval(
+    //       `${Number(prevNum1).toString()} ${opr} ${Number(num2).toString()}`
+    //     ).toString();
+    //   });
+    // } else {
+    const handleOpe = opr === "" ? value : opr;
+
+    switch (handleOpe) {
+      case "/":
+        setNum1((prevNum1) => {
+          console.log(prevNum1, handleOpe, num2);
+          const tempNum2 = num2 === "" ? 1 : num2;
+          return (Number(prevNum1) / Number(tempNum2)).toString();
+        });
+        break;
+      case "*":
+        setNum1((prevNum1) => {
+          console.log(Number(prevNum1), handleOpe, Number(num2));
+          const tempNum2 = num2 === "" ? 1 : num2;
+          return (Number(prevNum1) * Number(tempNum2)).toString();
+        });
+        break;
+      case "+":
+        setNum1((prevNum1) => {
+          console.log(Number(prevNum1), handleOpe, Number(num2));
+          return (Number(prevNum1) + Number(num2)).toString();
+        });
+        break;
+      case "-":
+        setNum1((prevNum1) => {
+          console.log(Number(prevNum1), handleOpe, Number(num2));
+          return (Number(prevNum1) - Number(num2)).toString();
+        });
+        break;
+
+      default:
+        setNum1("0");
+        break;
+    }
+    // setNum1("");
+    setNum2("");
+
+    console.log("num1: " + num1, "num2: " + num2);
+    // }
+
+    // }
+
+    // if (opr !== "" && num1 === "") {
+    //   switch (opr) {
+    //     case "/":
+    //       setResult((Number(result) / Number(num2)).toString());
+    //       break;
+    //     case "*":
+    //       setResult((Number(result) * Number(num2)).toString());
+    //       break;
+    //     case "+":
+    //       setResult((Number(result) + Number(num2)).toString());
+    //       break;
+    //     case "-":
+    //       setResult((Number(result) - Number(num2)).toString());
+    //       break;
+    //     case "%":
+    //       setResult((Number(result) % Number(num2)).toString());
+    //       break;
+
+    //     default:
+    //       setResult("0");
+    //       break;
+    //   }
+    // }
+  };
+
+  // const handleEqualBtn = () => {
+  //   //   // try {
+  //   //   //   setInput(eval(input).toString());
+  //   //   // } catch (error) {
+  //   //   //   setInput("Error");
+  //   //   // }
+  //   //   setOprClicked(false);
+  //   // return num1;
+  // };
+
   const showResult = () => {
-    if (result !== "") {
-      return result;
-    } else if (!oprClicked) {
+    // if (result !== "") {
+    //   return result;
+    // } else
+    if (!oprClicked) {
       return num1 === "" ? "0" : num1;
     } else if (oprClicked) {
-      return num2 === "" ? "0" : num2 === "0" ? num1 : num2;
+      return num2 === "" ? (num1 === "" ? num2 : num1) : num2;
     }
   };
 
@@ -141,7 +195,7 @@ const NewCalculator = () => {
           </button>
           <button
             className="calcBtn bg-neutral-400	 text-black"
-            onClick={() => handleOperator("m")}
+            onClick={handleMinusOperator}
           >
             <span>+</span>
             <span>/</span>
@@ -149,7 +203,7 @@ const NewCalculator = () => {
           </button>
           <button
             className="calcBtn bg-neutral-400	 text-black "
-            onClick={() => handleOperator("%")}
+            onClick={handlePercentageOperator}
           >
             %
           </button>
@@ -217,10 +271,15 @@ const NewCalculator = () => {
           <button className="zero" onClick={() => handleNumbers("0")}>
             0
           </button>
-          <button className="calcBtn" onClick={() => handleNumbers(".")}>
+          <button className="calcBtn" onClick={handleDotOperator}>
             .
           </button>
-          <button className="operator opactiy" onClick={handleEqualBtn}>
+          <button
+            className="operator opactiy"
+            onClick={() => {
+              handleOperator(opr);
+            }}
+          >
             =
           </button>
         </div>

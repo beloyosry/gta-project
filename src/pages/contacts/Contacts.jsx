@@ -1,6 +1,5 @@
 import searchIcon from "../../assets/images/search.png";
 import mic from "../../assets/images/mic.png";
-import { useEffect } from "react";
 
 const namesOfNumbers = [
   { name: "Amr Mohamed" },
@@ -25,6 +24,8 @@ const namesOfNumbers = [
   { name: "Zaha" },
   { name: "Saka" },
   { name: "Esraa" },
+  { name: "vsraa" },
+  { name: "ysraa" },
   { name: "Esam" },
 ];
 
@@ -94,7 +95,7 @@ const kk = () => {
               <p
                 key={name.name}
                 style={{ borderColor: "#2C2C2E" }}
-                className="border border-b-1 border-t-0 border-r-0 border-l-0  ml-2"
+                className="border border-b-1 border-t-0 border-r-0 border-l-0 py-1 ml-2"
               >
                 {name.name}
               </p>
@@ -109,9 +110,6 @@ const kk = () => {
 };
 
 const Contacts = () => {
-  useEffect(() => {
-    kk();
-  }, []);
   return (
     <div className="relative text-white flex flex-col justify-start items-start h-[80vh] mt-[50px]">
       <div className="w-full">
