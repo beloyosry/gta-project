@@ -6,9 +6,9 @@ import HomeBar from "./components/ui/HomeBar/HomeBar.jsx";
 import NewCalculator from "./pages/calculator/newCalculator.jsx";
 
 import AppStore from "./pages/AppStore/AppStore.jsx";
+import Contacts from "./pages/contacts/Contacts.jsx";
 
-function App ()
-{
+function App() {
   return (
     <div className=" relative rounded-[50px] overflow-hidden p-3 border-[3px] border-gray-500 bg-black h-screen w-screen">
       <Routes>
@@ -37,6 +37,16 @@ function App ()
             <>
               <Header />
               <AppStore />
+              <HomeBar />
+            </>
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <>
+              <Header />
+              <Contacts />
               <HomeBar />
             </>
           }
