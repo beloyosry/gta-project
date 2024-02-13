@@ -53,67 +53,75 @@ function AppStore ()
     const [ appList, setAppList ] = useState( [
         {
             name: "Instashot",
-            description: "Company Name",
+            description: "Company name",
             downloads: 8794562,
             icon: Instashot,
             path: "/Instashot",
             installed: false,
+            rate: 5
         },
         {
             name: "ChatBro",
-            description: "Company Name",
+            description: "Company name",
             downloads: 78562358,
             icon: whatsApp,
             path: "/whatsApp",
             installed: false,
+            rate: 3
         },
         {
             name: "Faces",
-            description: "Company Name",
+            description: "Company name",
             downloads: 1452851,
             icon: facebook,
             path: "/facebook",
             installed: false,
+            rate: 4
         },
         {
             name: "TicTakTok",
-            description: "Company Name",
+            description: "Company name",
             downloads: 7236,
             icon: tiktok,
             path: "/tiktok",
             installed: false,
+            rate: 5
         },
         {
             name: "EX",
-            description: "Company Name",
+            description: "Company name",
             downloads: 6541,
             icon: ex,
             path: "/ex",
             installed: false,
+            rate: 2
         },
         {
             name: "Maps",
-            description: "Company Name",
+            description: "Company name",
             downloads: 234,
             icon: maps,
             path: "/maps",
             installed: true,
+            rate: 5
         },
         {
             name: "SnapOO",
-            description: "Company Name",
+            description: "Company name",
             downloads: 145541298,
             icon: snapchat,
             path: "/snapchat",
             installed: true,
+            rate: 4
         },
         {
             name: "Shopping",
-            description: "Company Name",
+            description: "Company name",
             downloads: 234,
             icon: shopping,
             path: "/shopping",
             installed: true,
+            rate: 3
         },
     ] );
     const navigate = useNavigate();
@@ -145,8 +153,9 @@ function AppStore ()
             setAppList( updatedAppList );
         }, 3000 ); // Adjust the delay time as needed
     };
+
     return (
-        <div className="text-white flex flex-col justify-start items-start h-[84vh] mt-[40px] ">
+        <div className="text-white flex flex-col justify-start items-start h-full max-h-[90%] mt-[40px] overflow-hidden">
             {/* Header */}
             <div className="flex justify-between items-center w-full gap-2 ">
                 <div className="w-full relative">
@@ -167,25 +176,50 @@ function AppStore ()
             </div>
 
             {/* Apps */}
-            <div className="flex flex-col justify-between items-start h-[85%] w-full bg-[#131314] my-5 py-3 px-3">
+            <div className="flex flex-col justify-between items-start h-[85%] w-full bg-[#131314] my-5 py-3 px-3 overflow-hidden overflow-y-auto" style={{
+                scrollbarWidth: "thin",
+                scrollbarColor: "#4c4c4c #131314",
+                "&::-webkit-scrollbar": {
+                    width: "8px",
+                    borderRadius: "10px",
+                    backgroundColor: "#131314",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#3478f6",
+                    borderRadius: "10px",
+                },
+                "&::-webkit-scrollbar-track": {
+                    backgroundColor: "#131314",
+                },
+                "WebkitScrollSnapType": "y mandatory",
+                "WebkitOverflowScrolling": "touch",
+
+            }}>
                 {appList.map( ( app, index ) => (
                     <div
                         key={index}
-                        className="flex justify-start items-center gap-3 w-full cursor-pointer border border-transparent hover:border hover:border-gray-200 transition-all ease-in-out duration-300">
-                        <div className="icon">
-                            <img src={app.icon} alt={app.name} />
-                        </div>
+                        className="flex justify-start items-center gap-3 w-full h-fit cursor-pointer border border-transparent hover:border hover:border-gray-200 transition-all ease-in-out duration-300 ">
+                        <img className="icon w-[20%]" src={app.icon} alt={app.name} />
                         <div className="flex justify-between items-center w-full">
                             <div className="app-details flex flex-col justify-start items-start cursor-pointer border border-transparent hover:border hover:border-gray-200 transition-all ease-in-out duration-300" onClick={() => navigate( `/appstore${ app.path }` )}>
-                                <div>{app.name}</div>
-                                <div className="text-[14px] text-[#8d8f93]">
+                                <h3 className="mt-1 -mb-1">{app.name}</h3>
+                                <p className="text-[13px] text-[#8d8f93]">
                                     {app.description}
-                                </div>
-                                <div className="text-[12px] text-[#8d8f93] text-right w-full pr-3">
-                                    {formatDownloads( app.downloads )}
+                                </p>
+                                <div className="flex justify-between items-center w-full gap-1">
+                                    <div className="flex justify-start gap-[2px] items-center">
+                                        <i className="block fa-solid fa-star text-[10px] text-[#908f94]"></i>
+                                        <i className="block fa-solid fa-star text-[10px] text-[#908f94]"></i>
+                                        <i className="block fa-solid fa-star text-[10px] text-[#908f94]"></i>
+                                        <i className="block fa-solid fa-star text-[10px] text-[#908f94]"></i>
+                                        <i className="block fa-solid fa-star text-[10px] text-[#908f94]"></i>
+                                    </div>
+                                    <span className="block text-[12px] text-[#8d8f93] text-right w-full pr-3">
+                                        {formatDownloads( app.downloads )}
+                                    </span>
                                 </div>
                             </div>
-                            <div className="z-50 bg-[#202021] cursor-pointer py-1 px-5 rounded-[10px] border border-transparent hover:opacity-80 hover:border hover:border-gray-100 transition-all duration-300 ease-in-out" onClick={() => !app.installed && handleDownload( app.name )}>
+                            <div className="z-50 bg-[#202021] cursor-pointer px-5 rounded-[20px] border border-transparent hover:opacity-80 hover:border hover:border-gray-100 transition-all duration-300 ease-in-out" onClick={() => !app.installed && handleDownload( app.name )}>
                                 <a href={app.installed && app.path} className="text-[#3478f6] hover:opacity-80 transition-all duration-300 ease-in-out">
                                     {downloading === app.name ? ( <Loading /> ) : ( app.installed ? "OPEN" : "GET" )}
                                 </a>
