@@ -25,7 +25,7 @@ const apps = [
     path: "/calculator",
   },
   {
-    name: "EX",
+    name: "Shopping",
     icon: shopping,
     path: "/shopping",
   },

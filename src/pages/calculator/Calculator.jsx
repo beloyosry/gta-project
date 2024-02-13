@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "./Calculator.css";
 const Calculator = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("0");
 
   const handleBtnClick = (value) => {
-    setInput((prevInput) => prevInput + value);
+    setInput((prevInput) => (prevInput === "0" ? value : prevInput + value));
   };
 
   const handleClear = () => {
-    setInput("");
+    setInput("0");
   };
 
   const handleCalculate = () => {
@@ -22,8 +22,8 @@ const Calculator = () => {
   return (
     <div className="text-white flex flex-col justify-end items-start h-[80vh] mt-[40px]">
       <div className="w-full rounded-[70px] bg-black  ">
-        <div className="text-[51px] mb-[53px] p-[10px] bg-black text-right rounded-[8px] h-[40px]">
-          {input}
+        <div className="overflow-x-auto overflow-y-hidden text-[51px] mb-[20px] pb-[50px] bg-black text-right rounded-[8px] h-[90px]">
+          {input.replaceAll(" ", "")}
         </div>
         <div className="grid grid-cols-4 gap-[15px]">
           <button
@@ -32,18 +32,24 @@ const Calculator = () => {
           >
             AC
           </button>
-          <button className="calcBtn bg-neutral-400	 text-black">
+          <button
+            className="calcBtn bg-neutral-400	 text-black"
+            // onClick={() => handleBtnClick("m")}
+          >
             <span>+</span>
             <span>/</span>
             <span>-</span>
           </button>
           <button
             className="calcBtn bg-neutral-400	 text-black"
-            onClick={() => handleBtnClick("%")}
+            onClick={() => handleBtnClick(" % ")}
           >
             %
           </button>
-          <button className="operator pb-1" onClick={() => handleBtnClick("/")}>
+          <button
+            className="operator pb-1"
+            onClick={() => handleBtnClick(" / ")}
+          >
             /
           </button>
 
@@ -56,7 +62,10 @@ const Calculator = () => {
           <button className="calcBtn" onClick={() => handleBtnClick("9")}>
             9
           </button>
-          <button className="operator pt-2" onClick={() => handleBtnClick("*")}>
+          <button
+            className="operator pt-2"
+            onClick={() => handleBtnClick(" * ")}
+          >
             *
           </button>
 
@@ -69,7 +78,7 @@ const Calculator = () => {
           <button className="calcBtn" onClick={() => handleBtnClick("6")}>
             6
           </button>
-          <button className="operator" onClick={() => handleBtnClick("-")}>
+          <button className="operator" onClick={() => handleBtnClick(" - ")}>
             <div className="bg-white w-[20px] h-1 m-auto"></div>
           </button>
 
@@ -82,7 +91,7 @@ const Calculator = () => {
           <button className="calcBtn" onClick={() => handleBtnClick("3")}>
             3
           </button>
-          <button className="operator" onClick={() => handleBtnClick("+")}>
+          <button className="operator" onClick={() => handleBtnClick(" + ")}>
             +
           </button>
         </div>
