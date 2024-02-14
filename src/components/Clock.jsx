@@ -21,11 +21,7 @@ const Clock = () => {
 
   setInterval(updateTime, 1000);
 
-  return (
-    <div>
-      <h1>{currentTime}</h1>
-    </div>
-  );
+  return <span className="block">{currentTime}</span>;
 };
 
 export default Clock;

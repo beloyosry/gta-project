@@ -28,9 +28,9 @@ function HomeFooter() {
 
   return (
     <div className="absolute bottom-[28px] left-[50%] transform -translate-x-[50%] w-[92%] h-[70px] rounded-[22px]  bg-[rgb(13_18_37_/_90%)] flex items-center justify-evenly z-10">
-      {footerApps.map((item) => (
+      {footerApps.map((item, index) => (
         <div
-          key={item.icon}
+          key={index + "n"}
           className="w-[18%] hover:opacity-80 transition-all ease-in-out duration-300"
           onClick={() => navigate(item.path)}
         >

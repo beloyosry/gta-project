@@ -1,12 +1,10 @@
 import { useState } from "react";
 import "./Calculator.css";
 const NewCalculator = () => {
-  // const [input, setInput] = useState("0");
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [opr, setOpr] = useState("");
   const [oprClicked, setOprClicked] = useState(false);
-  // const [result, setResult] = useState("");
 
   // eslint-disable-next-line no-unused-vars
   const [end, setEnd] = useState(false);
@@ -76,22 +74,6 @@ const NewCalculator = () => {
     setOprClicked(true);
     setOpr(value);
 
-    // setNum2("");
-    // console.log("num1: " + num1, "num2: " + num2, "result: " + result);
-    console.log("newOperator:" + value, oprClicked, "oldOperator:" + opr); // "" , false
-    // if (opr !== "" && num1 !== "") {
-    //first one
-
-    // if (value === "=") {
-    //   setNum1((prevNum1) => {
-    //     setNum2("");
-    //     setOpr("");
-    //     setOprClicked(false);
-    //     return eval(
-    //       `${Number(prevNum1).toString()} ${opr} ${Number(num2).toString()}`
-    //     ).toString();
-    //   });
-    // } else {
     const handleOpe = opr === "" ? value : opr;
 
     switch (handleOpe) {
@@ -126,53 +108,10 @@ const NewCalculator = () => {
         setNum1("0");
         break;
     }
-    // setNum1("");
     setNum2("");
-
-    console.log("num1: " + num1, "num2: " + num2);
-    // }
-
-    // }
-
-    // if (opr !== "" && num1 === "") {
-    //   switch (opr) {
-    //     case "/":
-    //       setResult((Number(result) / Number(num2)).toString());
-    //       break;
-    //     case "*":
-    //       setResult((Number(result) * Number(num2)).toString());
-    //       break;
-    //     case "+":
-    //       setResult((Number(result) + Number(num2)).toString());
-    //       break;
-    //     case "-":
-    //       setResult((Number(result) - Number(num2)).toString());
-    //       break;
-    //     case "%":
-    //       setResult((Number(result) % Number(num2)).toString());
-    //       break;
-
-    //     default:
-    //       setResult("0");
-    //       break;
-    //   }
-    // }
   };
 
-  // const handleEqualBtn = () => {
-  //   //   // try {
-  //   //   //   setInput(eval(input).toString());
-  //   //   // } catch (error) {
-  //   //   //   setInput("Error");
-  //   //   // }
-  //   //   setOprClicked(false);
-  //   // return num1;
-  // };
-
   const showResult = () => {
-    // if (result !== "") {
-    //   return result;
-    // } else
     if (!oprClicked) {
       return num1 === "" ? "0" : num1;
     } else if (oprClicked) {
@@ -183,7 +122,7 @@ const NewCalculator = () => {
   return (
     <div className="text-white flex flex-col justify-end items-start h-[80vh] mt-[40px]">
       <div className="w-full rounded-[70px] bg-black  ">
-        <div className="overflow-x-auto overflow-y-hidden text-[51px] mb-[20px] pb-[50px] bg-black text-right rounded-[8px] h-[90px]">
+        <div className="overflow-x-auto overflow-y-hidden text-[51px] mb-[20px] pr-[12px] pb-[50px] bg-black text-right rounded-[8px] h-[90px]">
           {showResult()}
         </div>
         <div className="grid grid-cols-4 gap-[15px]">
@@ -227,7 +166,6 @@ const NewCalculator = () => {
           </button>
           <button
             className={`operator pt-2 ${
-              // oprClicked && opr === "*" ? "" : "opactiy"
               oprClicked && opr === "*" ? "" : "opactiy"
             }`}
             onClick={() => handleOperator("*")}
@@ -267,7 +205,7 @@ const NewCalculator = () => {
             +
           </button>
         </div>
-        <div className="flex justify-between items-center mt-[10px] w-[101%]">
+        <div className="flex justify-between items-center mt-[10px] w-[98%]">
           <button className="zero" onClick={() => handleNumbers("0")}>
             0
           </button>

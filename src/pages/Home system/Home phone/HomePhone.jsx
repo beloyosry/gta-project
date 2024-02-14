@@ -33,6 +33,7 @@ const apps = [
 
 const HomePhone = () => {
   const navigate = useNavigate();
+
   return (
     <div className="backGroundHome relative rounded-[30px] w-full h-full overflow-hidden">
       {/* Static Apps */}
@@ -50,10 +51,10 @@ const HomePhone = () => {
           <p className="text-white text-[10px] mt-[3px]">Clock</p>
         </div>
         <div className="w-[48%] flex flex-wrap justify-center gap-4 items-center ">
-          {apps.map((item) => {
+          {apps.map((item, index) => {
             return (
               <div
-                key={item.name}
+                key={index + "m"}
                 className={`hover:border-2 border-white text-white text-center w-[38%] h-full flex items-center justify-center flex-col`}
                 style={{}}
                 onClick={() => navigate(item.path)}

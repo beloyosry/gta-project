@@ -2,11 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/ui/Header/Header.jsx";
 import HomePhone from "./pages/Home system/Home phone/HomePhone";
 import HomeBar from "./components/ui/HomeBar/HomeBar.jsx";
-
 import NewCalculator from "./pages/calculator/newCalculator.jsx";
-
 import AppStore from "./pages/AppStore/AppStore.jsx";
 import Contacts from "./pages/contacts/Contacts.jsx";
+import Notifications from "./pages/Home system/Notifications/Notifications.jsx";
 
 function App() {
   return (
@@ -47,6 +46,16 @@ function App() {
             <>
               <Header />
               <Contacts />
+              <HomeBar />
+            </>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <>
+              {/* <Header /> */}
+              <Notifications />
               <HomeBar />
             </>
           }

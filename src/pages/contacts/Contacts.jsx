@@ -62,10 +62,7 @@ const kk = () => {
   const letters = new Set();
 
   for (const koko of namesOfNumbers) {
-    console.log(koko.name.toUpperCase().slice(0, 1), "char");
     letters.add(koko.name.toUpperCase().slice(0, 1));
-    // const char = koko.name.toUpperCase().slice(0, 1);
-    // if (!temp_array.includes(char)) temp_array.push(char);
   }
 
   const arr = [];
@@ -77,23 +74,19 @@ const kk = () => {
 
   const result = [];
 
-  for (const letter of sortedArr) {
-    console.log(letter, "koko");
+  for (let i = 0; i < sortedArr.length; i++) {
+    const letter = sortedArr[i];
 
     result.push(
-      <>
-        <div
-          key={letter}
-          style={{ backgroundColor: "#2C2C2E" }}
-          className="w-full px-2"
-        >
+      <div key={i + "n"}>
+        <div style={{ backgroundColor: "#2C2C2E" }} className="w-full px-2">
           {letter}
         </div>
-        {namesOfNumbers.map((name) => {
+        {namesOfNumbers.map((name, index) => {
           if (name.name.toLowerCase().startsWith(letter.toLowerCase())) {
             return (
               <p
-                key={name.name}
+                key={index + "o"}
                 style={{ borderColor: "#2C2C2E" }}
                 className="border border-b-1 border-t-0 border-r-0 border-l-0 py-1 ml-2"
               >
@@ -102,7 +95,7 @@ const kk = () => {
             );
           }
         })}
-      </>
+      </div>
     );
   }
 
@@ -140,11 +133,13 @@ const Contacts = () => {
           </div>
         </div>
       </div>
-      <div className="allnum w-full overflow-y-auto noScroll">{kk()}</div>
+      <div key={"h"} className="allnum w-full overflow-y-auto noScroll">
+        {kk()}
+      </div>
       <div className="absolute right-0 top-[20%] text-[10px] text-blue-500">
-        {enLetters.map((letter) => {
+        {enLetters.map((letter, index) => {
           return (
-            <span className="block" key={letter}>
+            <span className="block" key={index + "z"}>
               {letter}
             </span>
           );

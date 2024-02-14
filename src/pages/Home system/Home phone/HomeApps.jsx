@@ -59,7 +59,7 @@ function HomeApps() {
     <div className="flex flex-wrap " style={{ gap: "25px" }}>
       {apps.map((app, index) => (
         <AppIcon
-          key={index}
+          key={index + "c"}
           name={app.name}
           img={app?.icon}
           onClick={() => navigate(app.path)}
