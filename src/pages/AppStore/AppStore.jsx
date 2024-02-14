@@ -12,10 +12,12 @@ import Arcade from "../../assets/images/arcade.png";
 import Apps from "../../assets/images/apps.png";
 import Games from "../../assets/images/games.png";
 import Today from "../../assets/images/today.png";
-import { useNavigate } from "react-router-dom";
+import appDetails from "../../assets/images/appDetails.png";
 import { useState } from "react";
+import AppDetails from "./AppDetails";
+import "./AppStore.css";
 
-const Loading = () => ( <svg width="20" height="20" fill="currentColor" className="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+export const Loading = () => ( <svg width="20" height="20" fill="currentColor" className="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
     <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
     </path>
 </svg> );
@@ -52,79 +54,97 @@ function AppStore ()
     const [ downloading, setDownloading ] = useState( false );
     const [ appList, setAppList ] = useState( [
         {
+            id: 1,
             name: "Instashot",
             description: "Company name",
             downloads: 8794562,
             icon: Instashot,
             path: "/Instashot",
             installed: false,
-            rate: 5
+            rate: 5,
+            image: appDetails
         },
         {
+            id: 2,
             name: "ChatBro",
             description: "Company name",
             downloads: 78562358,
             icon: whatsApp,
             path: "/whatsApp",
             installed: false,
-            rate: 3
+            rate: 3,
+            image: appDetails
         },
         {
+            id: 3,
             name: "Faces",
             description: "Company name",
             downloads: 1452851,
             icon: facebook,
             path: "/facebook",
             installed: false,
-            rate: 4
+            rate: 4,
+            image: appDetails
         },
         {
+            id: 4,
             name: "TicTakTok",
             description: "Company name",
             downloads: 7236,
             icon: tiktok,
             path: "/tiktok",
             installed: false,
-            rate: 5
+            rate: 5,
+            image: appDetails
         },
         {
+            id: 5,
             name: "EX",
             description: "Company name",
             downloads: 6541,
             icon: ex,
             path: "/ex",
             installed: false,
-            rate: 2
+            rate: 2,
+            image: appDetails
         },
         {
+            id: 6,
             name: "Maps",
             description: "Company name",
             downloads: 234,
             icon: maps,
             path: "/maps",
             installed: true,
-            rate: 5
+            rate: 5,
+            image: appDetails
         },
         {
+            id: 7,
             name: "SnapOO",
             description: "Company name",
             downloads: 145541298,
             icon: snapchat,
             path: "/snapchat",
             installed: true,
-            rate: 4
+            rate: 4,
+            image: appDetails
         },
         {
+            id: 8,
             name: "Shopping",
             description: "Company name",
             downloads: 234,
             icon: shopping,
             path: "/shopping",
             installed: true,
-            rate: 3
+            rate: 3,
+            image: appDetails
         },
     ] );
-    const navigate = useNavigate();
+    const [ selectedApp, setSelectedApp ] = useState( {} );
+    const [ openApp, setOpenApp ] = useState( false );
+
     const formatDownloads = ( downloads ) =>
     {
         if ( downloads >= 1000000 )
@@ -154,8 +174,15 @@ function AppStore ()
         }, 3000 ); // Adjust the delay time as needed
     };
 
+    const handleSelectedApp = ( id ) =>
+    {
+        const app = appList.find( ( app ) => app.id === id );
+        setSelectedApp( app );
+        setOpenApp( true );
+    };
+
     return (
-        <div className="text-white flex flex-col justify-start items-start h-full max-h-[90%] mt-[40px] overflow-hidden">
+        <div className="relative text-white flex flex-col justify-start items-start h-full max-h-[90%] mt-[40px] overflow-hidden">
             {/* Header */}
             <div className="flex justify-between items-center w-full gap-2 ">
                 <div className="w-full relative">
@@ -179,29 +206,29 @@ function AppStore ()
             <div className="flex flex-col justify-between items-start h-[85%] w-full bg-[#131314] my-5 py-3 px-3 overflow-hidden overflow-y-auto" style={{
                 scrollbarWidth: "thin",
                 scrollbarColor: "#4c4c4c #131314",
-                "&::-webkit-scrollbar": {
+                "&::WebkitScrollbar": {
                     width: "8px",
                     borderRadius: "10px",
                     backgroundColor: "#131314",
                 },
-                "&::-webkit-scrollbar-thumb": {
+                "&::WebkitScrollbarThumb": {
                     backgroundColor: "#3478f6",
                     borderRadius: "10px",
                 },
-                "&::-webkit-scrollbar-track": {
+                "&::WebkitScrollbarTrack": {
                     backgroundColor: "#131314",
                 },
                 "WebkitScrollSnapType": "y mandatory",
                 "WebkitOverflowScrolling": "touch",
 
             }}>
-                {appList.map( ( app, index ) => (
+                {appList.map( ( app ) => (
                     <div
-                        key={index}
+                        key={app.id}
                         className="flex justify-start items-center gap-3 w-full h-fit cursor-pointer border border-transparent hover:border hover:border-gray-200 transition-all ease-in-out duration-300 ">
                         <img className="icon w-[20%]" src={app.icon} alt={app.name} />
                         <div className="flex justify-between items-center w-full">
-                            <div className="app-details flex flex-col justify-start items-start cursor-pointer border border-transparent hover:border hover:border-gray-200 transition-all ease-in-out duration-300" onClick={() => navigate( `/appstore${ app.path }` )}>
+                            <div className="app-details flex flex-col justify-start items-start cursor-pointer border border-transparent hover:border hover:border-gray-200 transition-all ease-in-out duration-300" onClick={() => handleSelectedApp( app.id )}>
                                 <h3 className="mt-1 -mb-1">{app.name}</h3>
                                 <p className="text-[13px] text-[#8d8f93]">
                                     {app.description}
@@ -220,7 +247,7 @@ function AppStore ()
                                 </div>
                             </div>
                             <div className="z-50 bg-[#202021] cursor-pointer px-5 rounded-[20px] border border-transparent hover:opacity-80 hover:border hover:border-gray-100 transition-all duration-300 ease-in-out" onClick={() => !app.installed && handleDownload( app.name )}>
-                                <a href={app.installed && app.path} className="text-[#3478f6] hover:opacity-80 transition-all duration-300 ease-in-out">
+                                <a href={app.installed ? app.path : undefined} className="text-[#3478f6] hover:opacity-80 transition-all duration-300 ease-in-out">
                                     {downloading === app.name ? ( <Loading /> ) : ( app.installed ? "OPEN" : "GET" )}
                                 </a>
                             </div>
@@ -242,6 +269,13 @@ function AppStore ()
                     ) )
                 }
             </div>
+
+            {openApp && (
+                <div className={`absolute w-full h-[92%] ${ openApp ? "openApp" : "closeApp"
+                    } z-50`}>
+                    <AppDetails app={selectedApp} setOpenApp={setOpenApp} setSelectedApp={setSelectedApp} />
+                </div>
+            )}
         </div>
     );
 }
