@@ -47,3 +47,7 @@ body {
 .noScroll::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
+
+.controlSlider .MuiSlider-thumb {
+  display: none;
+}
