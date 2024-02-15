@@ -7,6 +7,7 @@ import Notifications from "../../../pages/Home system/Notifications/Notification
 import FaceId from "../../../pages/Home system/Face id/FaceId";
 import { blue } from "@mui/material/colors";
 import ControlCenter from "../../../pages/Home system/Control Center/ControlCenter";
+import HomeBar from "../HomeBar/HomeBar";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -122,6 +123,9 @@ const Header = () => {
           }}
         >
           <ControlCenter />
+          <div className=" w-full z-50" onClick={handleShowControlCenter}>
+            <HomeBar />
+          </div>
         </div>
       </div>
     </>

@@ -16,6 +16,7 @@ import SliderRange from "./components/SliderRange";
 import AirPods from "./components/AirPods";
 import ControlCenterBtn from "./components/ControlCenterBtn";
 import MoodSection from "./components/MoodSection";
+import HomeBar from "../../../components/ui/HomeBar/HomeBar";
 
 const ControlCenter = () => {
   const [flightBtn, setflightBtn] = useState(false);

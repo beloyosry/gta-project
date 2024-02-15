@@ -71,15 +71,6 @@ function App() {
             </>
           }
         />
-        <Route
-          path="/control-center"
-          element={
-            <>
-              <ControlCenter />
-              <HomeBar />
-            </>
-          }
-        />
       </Routes>
     </div>
   );
