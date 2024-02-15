@@ -19,7 +19,7 @@ const footerApps = [
   },
   {
     icon: gallary,
-    path: "/gallary",
+    path: "/gallery",
   },
 ];
 
