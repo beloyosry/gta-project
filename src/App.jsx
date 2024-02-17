@@ -5,10 +5,9 @@ import HomeBar from "./components/ui/HomeBar/HomeBar.jsx";
 import NewCalculator from "./pages/calculator/newCalculator.jsx";
 import AppStore from "./pages/AppStore/AppStore.jsx";
 import Contacts from "./pages/contacts/Contacts.jsx";
-import Notifications from "./pages/Home system/Notifications/Notifications.jsx";
-import Gallery from "./pages/gallery/Gallery.jsx";
-import ControlCenter from "./pages/Home system/Control Center/ControlCenter.jsx";
+import Gallery from "./pages/Gallery/Gallery.jsx";
 import Folder from "./pages/Home system/Folder/Folder.jsx";
+import Battery from "./pages/Home system/Battery/Battery.jsx";
 
 function App() {
   return (
@@ -68,7 +67,14 @@ function App() {
           element={
             <>
               <Folder />
-              {/* <HomeBar /> */}
+            </>
+          }
+        />
+        <Route
+          path="/battery"
+          element={
+            <>
+              <Battery />
             </>
           }
         />
