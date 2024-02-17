@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Calculator.css";
+import { motion } from "framer-motion";
+
 const Calculator = () => {
   const [input, setInput] = useState("0");
 
@@ -20,7 +22,13 @@ const Calculator = () => {
   };
 
   return (
-    <div className="text-white flex flex-col justify-end items-start h-[80vh] mt-[40px]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="text-white flex flex-col justify-end items-start h-[80vh] mt-[40px]"
+    >
       <div className="w-full rounded-[70px] bg-black  ">
         <div className="overflow-x-auto overflow-y-hidden text-[51px] mb-[20px] pb-[50px] bg-black text-right rounded-[8px] h-[90px]">
           {input.replaceAll(" ", "")}
@@ -107,7 +115,7 @@ const Calculator = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -160,7 +160,7 @@ const Notifications = ({ handleClickOpen }) => {
               alt=""
               className="cursor-pointer flex justify-center items-center w-[25%]"
             />
-            <span>Uplock</span>
+            <span>Unlock</span>
           </div>
           <div
             className="w-[14%] hover:opacity-60 transition-all ease-in-out duration-300"

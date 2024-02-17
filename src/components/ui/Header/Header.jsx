@@ -77,8 +77,8 @@ const Header = () => {
         className={` absolute w-full h-full left-0 z-30  text-white ${
           open ? "top-[-1000px]" : "top-0 "
           // open ? "top-0 " : "top-[-1000px]"
-        } `}
-        style={{ transition: "1s" }}
+        } duration-300 `}
+        style={{ transition: "2s" }}
       >
         <div
           style={{ filter: " blur(11px)" }}
@@ -110,15 +110,16 @@ const Header = () => {
         className={` absolute w-full h-full left-0 z-20  text-white ${
           !showCenter ? "top-[-1000px]" : "top-0 "
           // open ? "top-0 " : "top-[-1000px]"
-        } `}
-        style={{ transition: "1s" }}
+        } duration-300 `}
+        style={{ transition: "2s" }}
       >
         <div
           className={` ${
             show ? "block" : "hidden"
-          } none absolute w-full h-full flex justify-center items-start top-0 pt-[100px]`}
+          } none absolute w-full h-full bg-black/60 backdrop-blur-md flex justify-center items-start top-0 pt-[100px]`}
           style={{
-            background: "rgb(0 0 0 / 90%)",
+            // background: "rgb(0 0 0 / 90%)",
+            // background: "red",
             zIndex: "500",
           }}
         >

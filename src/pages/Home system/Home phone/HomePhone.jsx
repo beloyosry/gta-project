@@ -9,6 +9,7 @@ import Clock from "../../../components/Clock";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import HomeBar from "../../../components/ui/HomeBar/HomeBar";
+import { motion } from "framer-motion";
 
 const apps = [
   {
@@ -38,7 +39,13 @@ const HomePhone = () => {
   const [openedFolder, setOpenedFolder] = useState(false);
 
   return (
-    <div className="backGroundHome relative rounded-[30px] w-full h-full overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="backGroundHome relative rounded-[30px] w-full h-full overflow-hidden"
+    >
       {/* Static Apps */}
       <div className=" px-3 pt-[50px] flex justify-center items-center mx-auto gap-3">
         <div className="w-[48%] text-center">
@@ -87,7 +94,7 @@ const HomePhone = () => {
           />
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

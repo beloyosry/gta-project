@@ -8,9 +8,9 @@ const handleBtnVolum = (event) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const SliderRange = ({ image, valueNum }) => {
+const SliderRange = ({ image, valueNum, padd }) => {
   return (
-    <Box sx={{ height: 130, width: 90, position: "relative" }}>
+    <Box sx={{ height: "90%", width: 90, position: "relative" }}>
       <Slider
         sx={{
           '& input[type="range"]': {
@@ -18,6 +18,7 @@ const SliderRange = ({ image, valueNum }) => {
           },
           width: 70,
           color: "#FFFFFF",
+          borderRadius: "0px 0px 20px 20px",
         }}
         orientation="vertical"
         defaultValue={valueNum}
@@ -25,7 +26,12 @@ const SliderRange = ({ image, valueNum }) => {
         valueLabelDisplay="auto"
         onKeyDown={handleBtnVolum}
       />
-      <img src={image} alt="" className="absolute left-10 bottom-3 w-7" />
+      <img
+        src={image}
+        alt=""
+        className={`absolute left-10 bottom-4 w-7 `}
+        style={{ paddingBottom: padd }}
+      />
     </Box>
   );
 };

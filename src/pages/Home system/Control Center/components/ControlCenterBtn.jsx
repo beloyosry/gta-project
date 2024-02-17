@@ -1,7 +1,5 @@
 const ControlCenterBtn = ({
   // eslint-disable-next-line react/prop-types
-  image,
-  // eslint-disable-next-line react/prop-types
   handleClick,
   // eslint-disable-next-line react/prop-types
   question,
@@ -12,18 +10,25 @@ const ControlCenterBtn = ({
   // eslint-disable-next-line react/prop-types
   pading,
   // eslint-disable-next-line react/prop-types
-  imgWidth,
+  svgIcon,
   // eslint-disable-next-line react/prop-types
-  divWidth,
+  round,
+  // eslint-disable-next-line react/prop-types
+  iconWidth,
+  // eslint-disable-next-line react/prop-types
+  iconHeight,
 }) => {
   return (
     <div
       className={`${
         !question ? firstBg : secondBg
-      } ${divWidth}  ${pading} rounded-[50%] flex items-center justify-center`}
+      } ${pading}  ${round} flex items-center justify-center`}
       onClick={handleClick}
+      style={{ width: iconWidth, height: iconHeight }}
     >
-      <img src={image} alt="" className={imgWidth} />
+      {/* <img src={image} alt="" className={imgWidth} /> */}
+      {svgIcon}
+      {/* <div className="w-full h-full">{svgIcon}</div> */}
     </div>
   );
 };

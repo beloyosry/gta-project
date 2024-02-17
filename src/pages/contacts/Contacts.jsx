@@ -4,6 +4,7 @@ import ContactProfile from "./ContactProfile";
 import { useState } from "react";
 import AddContact from "./AddContact";
 import "./contacts.css";
+import { motion } from "framer-motion";
 
 const contacts = [
   {
@@ -246,7 +247,13 @@ const Contacts = () => {
   };
 
   return (
-    <div className="relative text-white flex flex-col justify-start items-start h-[80vh] mt-[50px]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="relative text-white flex flex-col justify-start items-start h-[80vh] mt-[50px]"
+    >
       <div
         className={`w-full transition-all ease-in-out duration-100 ${
           showContact | showAddContact && "blur-[3px]"
@@ -319,7 +326,7 @@ const Contacts = () => {
           />
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
