@@ -11,6 +11,7 @@ import Folder from "./pages/Home system/Folder/Folder";
 import Battery from "./pages/Home system/Battery/Battery";
 import { AnimatePresence } from "framer-motion";
 import { debugData } from "../utils/debugData.js";
+import Settings from "./pages/Settings/Settings";
 
 debugData([
   {
@@ -89,6 +90,16 @@ const App: React.FC = () => {
             element={
               <>
                 <Battery />
+              </>
+            }
+          />
+          <Route
+            path="/setting"
+            element={
+              <>
+                <Header dark />
+                <Settings />
+                <HomeBar bottom="20px" dark />
               </>
             }
           />

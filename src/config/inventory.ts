@@ -16,3 +16,22 @@ export type ContactType = {
     mobile: string;
     home: string;
 }
+
+interface SettingItem {
+    id: string;
+    name: string;
+    value: string;
+}
+
+export interface SettingGroup {
+    id: string;
+    name: string;
+    icon: React.ReactElement;
+    fillColor?: string;
+    bg?: string;
+    settings: SettingItem[];
+}
+
+export interface AllGroups {
+    [key: string]: SettingGroup[];
+}
