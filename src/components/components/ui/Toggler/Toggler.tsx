@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Switch, { SwitchProps } from "@mui/material/Switch";
 
+
 const IOSSwitch = styled((props: SwitchProps) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
@@ -53,6 +54,9 @@ const IOSSwitch = styled((props: SwitchProps) => (
     },
 }));
 
-export default function Toggler() {
-    return <IOSSwitch sx={{ m: 1 }} defaultChecked={true} />;
+type Props = {
+    checked?: boolean
+}
+export default function Toggler({ checked = true }: Props) {
+    return <IOSSwitch sx={{ m: 1 }} defaultChecked={checked} />;
 }

@@ -2,10 +2,12 @@ import "./index.css";
 import Profile from "../../assets/images/profile.png";
 import Icon from "../../../config/Icon";
 import { useState } from "react";
-import SettingItem from "./SettingItem";
+import SettingItems from "./SettingItems";
 import { SettingGroup } from "../../../config/inventory";
 import { allGroups } from "./SettingsObject";
 import { ChevronRight } from "./svgIcons";
+import { motion } from "framer-motion";
+
 
 function Settings() {
     const [selectedGroup, setSelectedGroup] = useState<SettingGroup | null>(null);
@@ -15,9 +17,14 @@ function Settings() {
     };
 
     return (
-        <div className="bg-[#f2f2f7] relative flex flex-col justify-start items-start w-full h-full rounded-[50px] overflow-hidden overflow-y-auto">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.5 }}
+            className="bg-[#f2f2f7] relative flex flex-col justify-start items-start w-full h-full rounded-[50px] overflow-hidden overflow-y-auto">
             {selectedGroup ? (
-                <SettingItem selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} />
+                <SettingItems selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} />
             ) : (
                 <div className="container mt-[100px] px-5">
                     <h1 className="text-left text-4xl font-bold">Settings</h1>
@@ -51,7 +58,7 @@ function Settings() {
                     ))}
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 }
 

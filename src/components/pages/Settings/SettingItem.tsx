@@ -1,30 +1,34 @@
-import { SettingGroup } from "../../../config/inventory";
+import Icon from "../../../config/Icon";
+import { SettingItem } from "../../../config/inventory";
 import Toggler from "../../components/ui/Toggler/Toggler";
+import { ChevronRight } from "./svgIcons";
 
-type Props = {
-    selectedGroup: SettingGroup;
-    setSelectedGroup: (group: SettingGroup | null) => void;
+type props = {
+    item: SettingItem;
 };
-function SettingItem({ selectedGroup, setSelectedGroup }: Props) {
+
+function SettingItemComponent({ item }: props) {
+    const handleClick = () => {
+        if (item.type.type === "action") {
+            item.type.action(); // Call action function if it exists
+        } else if (item.type.type === "tab") {
+            // Navigate to specific sub-setting page
+        }
+    };
     return (
-        <div className="container mt-[100px] px-5">
-            <h1 className="text-left text-4xl font-bold">{selectedGroup.name}</h1>
-            <button
-                className="text-left text-3xl font-bold text-slate-500"
-                onClick={() => setSelectedGroup(null)}>
-                Back
-            </button>
-            <Toggler />
-            <div key={selectedGroup.id}>
-                <h2>{selectedGroup.name}</h2>
-                {selectedGroup.settings.map((setting) => (
-                    <p key={setting.id}>
-                        {setting.name}: {setting.value}
-                    </p>
-                ))}
+        <div className="w-full border-b border-[#c7c7cc] flex justify-between items-center gap-10 py-2 last-of-type:border-b-0">
+
+
+                <p onClick={handleClick} className={`${item.type.type === "action" && "text-[#007bfe] cursor-pointer"}  font-[500]`}>{item.name}</p>
+                <div className="flex justify-between items-center">
+                    {item.type.type === "toggle" && <Toggler checked={item.type.checked} />}
+                    {item.type.type === "tab" && (
+                        // Render tab content
+                        <Icon svg={ChevronRight} bg="transparent" fill="#c7c7cc" />
+                    )}
             </div>
         </div>
     );
 }
 
-export default SettingItem;
+export default SettingItemComponent;

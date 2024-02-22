@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 type Props = {
     makeCall?: boolean;
     setMakeCall: (value: boolean) => void;
-}
+};
 function Keyboard({ makeCall, setMakeCall }: Props) {
     const [contacts, setContacts] = useState(false);
     const [addNumber, setAddNumber] = useState(false);
@@ -59,67 +59,92 @@ function Keyboard({ makeCall, setMakeCall }: Props) {
                     <div className=" text-white w-full h-[100vh] rounded-[30px] bottom-[-100px]  bg-white">
                         <div
                             className={`Contact pt-[30px] absolute w-full h-full ${addNumber ? "openContact" : "closeContact"
-                                } z-50`}
-                        >
-                            {addNumber && (
-                                <AddContact
-                                    setShowAddContact={setAddNumber}
-                                />
-                            )}
+                                } z-50`}>
+                            {addNumber && <AddContact setShowAddContact={setAddNumber} />}
                         </div>
                     </div>
                 )}
 
-                <div className="relative rounded-[30px] w-full h-full overflow-hidden flex flex-col justify-start items-center px-10 pt-24 bg-white gap-10">
-                    <div className="w-[95%] mx-auto overflow-hidden inputNumbers flex flex-col justify-center items-center gap-5">
+                <div className="relative rounded-[30px] w-full h-full overflow-hidden flex flex-col justify-center items-center px-10  bg-white gap-10">
+                    <div className="w-[95%] mx-auto overflow-hidden inputNumbers flex flex-col justify-center items-center gap-5 h-[120px]">
                         <h1 className="text-5xl">{inputNumbers}</h1>
-                        <p className="text-[#3e74b0] font-[500]" onClick={() => setAddNumber(true)}>Add Number</p>
+                        {inputNumbers.length > 0 && (
+                            <p
+                                className="text-[#3e74b0] font-[500]"
+                                onClick={() => setAddNumber(true)}>
+                                Add Number
+                            </p>
+                        )}
                     </div>
-                    <div className="keyboardNums w-full mt-14 flex flex-col justify-center items-center gap-5">
+                    <div className="keyboardNums w-full mt- flex flex-col justify-center items-center gap-5">
                         <div className="pads w-[287.96px] grid grid-cols-3 grid-rows-4 gap-5 mx-auto">
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full" onClick={() => handleNumberClick(1)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full"
+                                onClick={() => handleNumberClick(1)}>
                                 <p className="text-black text-4xl">1</p>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(2)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(2)}>
                                 <p className="text-black text-4xl">2</p>
                                 <span className="text-xs font-bold">A B C</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(3)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(3)}>
                                 <p className="text-black text-4xl">3</p>
                                 <span className="text-xs font-bold">D E F</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(4)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(4)}>
                                 <p className="text-black text-4xl">4</p>
                                 <span className="text-xs font-bold">G H I</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(5)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(5)}>
                                 <p className="text-black text-4xl">5</p>
                                 <span className="text-xs font-bold">J K L</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(6)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(6)}>
                                 <p className="text-black text-4xl">6</p>
                                 <span className="text-xs font-bold">M N O</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(7)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(7)}>
                                 <p className="text-black text-4xl">7</p>
                                 <span className="text-xs font-bold">P Q R S</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(8)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(8)}>
                                 <p className="text-black text-4xl">8</p>
                                 <span className="text-xs font-bold">T U V</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(9)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(9)}>
                                 <p className="text-black text-4xl">9</p>
                                 <span className="text-xs font-bold">W X Y Z</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick("*")}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick("*")}>
                                 <p className="text-black text-4xl">*</p>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick(0)}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick(0)}>
                                 <p className="text-black text-4xl">0</p>
                                 <span className="text-xs font-bold">+</span>
                             </button>
-                            <button className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center" onClick={() => handleNumberClick("#")}>
+                            <button
+                                className="bg-[#e2e2e2] w-[77.88px] h-[77.88px] rounded-full flex flex-col justify-center items-center"
+                                onClick={() => handleNumberClick("#")}>
                                 <p className="text-black text-4xl">#</p>
                             </button>
                         </div>
@@ -161,7 +186,6 @@ function Keyboard({ makeCall, setMakeCall }: Props) {
                     </div>
                 </div>
             </div>
-
         </motion.div>
     );
 }
